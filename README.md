@@ -19,3 +19,5 @@ npm run dev
 ดูรายละเอียดการ Deploy ได้ใน **Slide-15-RESTful-API-part1-extras**
 
 จากนั้นให้กรอก URL ที่ได้จากการ Deploy ไว้ใน spreadsheet https://o365cmu-my.sharepoint.com/:x:/g/personal/dome_potikanond_cmu_ac_th/EbAylutNGSZLpmZ_pCeJAlgBCUGNcdZDBp420BIQXSOAvA?rtime=p00l-Oml2kg&wdLOR=cBD833306-DE0D-40BF-A762-0F0F8C43402B
+
+https://vercel.com/duxmazter46/quiz-04-261207-640610643/9Brbf95UMQ5b8SBY9bEDmcrCYKFc
