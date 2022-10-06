@@ -6,8 +6,21 @@ export default function userRegisterRoute(req, res) {
   if (req.method === "POST") {
     const { username, password, isAdmin } = req.body;
 
-    //check authentication
     const user = checkToken(req);
+    if (!user) {
+      return res.status(403).json({
+        ok: false,
+        message: "You do not have permission to create account",
+      });
+    }
+    const users = readUsersDB();
+    const foundUser = users.find((x) => x.username === username);
+    if (foundUser)
+      return res
+        .status(400)
+        .json({ ok: false, message: "Username is already taken" });
+    //check authentication
+
     //return res.status(403).json({ok: false,message: "You do not have permission to create account",});
 
     //validate body
@@ -23,13 +36,23 @@ export default function userRegisterRoute(req, res) {
         .json({ ok: false, message: "Invalid request body" });
 
     //check if username is already in database
-    const users = readUsersDB();
+
     //return res.status(400).json({ ok: false, message: "Username is already taken" });
 
     //create new user and add in db
+    const newUser = {
+      username,
+      //hash password before storing in db
+      //12 = salt round required for bcrypt
+      password: bcrypt.hashSync(password, 12),
+      isAdmin,
+      money: 0,
+    };
 
+    users.push(newUser);
     writeUsersDB(users);
 
     //return response
+    return res.json({ ok: true, username, isAdmin });
   }
 }
